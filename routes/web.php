@@ -35,14 +35,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // ->middleware('auth:admin')
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     //HomePage
-
     Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
-    // Route::get('/categories',CategoriesComponnent::class)->name('categories');
     Route::get('/categories',[AdminController::class,'category'])->name('categories');
-
-    Route::POST('/logout-admin',[LoginController::class,'admin_logout'])->name('admin.logout');
-
-    // Route::get();
+    Route::get('/settings/employee',[AdminController::class,'employee'])->name('employee');
+    // Route::POST('/logout-admin',[LoginController::class,'admin_logout'])->name('admin.logout');
 })->name('admin.');
 
 

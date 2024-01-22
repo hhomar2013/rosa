@@ -12,7 +12,7 @@
             <div class="card-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Category Name</label></label>
-                <input wire:model="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="cteogry Name">
+                <input wire:model.defer="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="cteogry Name">
                 @error('name') <span class="text-danger">{{ $message }}</span>@enderror
             </div>
            {{-- <div class="form-group">
@@ -31,8 +31,15 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button class="btn btn-primary" wire:click.prevent="save">Save <i class="fa fa-save"></i></button>
+                <button class="btn btn-primary" wire:click.prevent="save">
+                    Save
+                        <i class="fa fa-save"></i>
+                </button>
+
+
             </div>
+
+
         </form>
         </div>
         <!-- /.card -->

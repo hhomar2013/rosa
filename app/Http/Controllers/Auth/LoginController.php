@@ -64,14 +64,11 @@ class LoginController extends Controller
     }
 
     public function admin_logout(Request $request){
-        // dd($this->guard());
-        $this->guard('admin')->logout();
-
-        $request->session()->flush(); // this method should be called after we ensure that there is no logged in guards left
-
-        $request->session()->regenerate(); //same
-
-        return redirect('/admin');
+        Auth::guard('admin')->logout();
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->redirectTo('/admin');
     }
 
 }

@@ -23,5 +23,9 @@ class AdminController extends Controller
         return view('admin.categories.index');
     }
 
+    public function employee(){
+        return view('admin.employee.index');
+    }
+
 
 }

@@ -43,7 +43,7 @@
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     @livewireStyles
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed text-sm">
     @yield('loader')
     <div class="wrapper">
 
@@ -80,9 +80,9 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- SweetAlert2 -->
-<script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+{{-- <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script> --}}
 <!-- Toastr -->
-<script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+{{-- <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script> --}}
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- Select2 -->
@@ -112,7 +112,26 @@
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-@livewireScripts
+
+<script src="{{asset("dist/js/sweetalert2@11.js")}}"></script>
+
+
 @stack('js')
+@livewireScripts
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        animation: true,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        });
+
+</script>
 </body>
 </html>

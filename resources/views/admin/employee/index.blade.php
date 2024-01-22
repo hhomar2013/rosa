@@ -1,10 +1,10 @@
 @extends('layouts.admin_app')
-@section('title','Categories')
+@section('title','Employes')
 @section('content-header',)
-@include('admin.tools.content_header',['title'=>'Categories','page'=>'Categories'])
+@include('admin.tools.content_header',['title'=>'Employes','page'=>'Employes'])
 @endsection
 @section('content')
-@livewire('admin.categories-componnent')
+@livewire('admin.employe.index')
 @endsection
 @push('js')
 
@@ -33,5 +33,3 @@
 </script>
 
 @endpush
-
-

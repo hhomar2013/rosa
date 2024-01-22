@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 ">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{ asset('dist/img/1.png') }}" alt="{{ config('app.name') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -8,26 +8,24 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block">{{ Auth::guard()->name }}</a>
           <a href="{{route('admin.logout')}}">admin logout </a>
           <hr>
-                {{-- <a class="btn btn-danger btn-block" href="{{ route('admin.logout') }}"
-                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                <i class="fas fa-sign-out-alt"></i>
-                </a>
-
-            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
-                @csrf
-            </form> --}}
+          <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+            signout
+        </a>
+        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
         </div>
-      </div>
-
+      </div> --}}
+        <br>
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -39,10 +37,11 @@
           </div>
         </div>
       </div>
+      <hr>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <nav class="mt-2 ">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
@@ -66,19 +65,19 @@
           </li>
 
 
-          <li class="nav-item">
+          <li class="nav-item  {{ request()->is('admin/settings/*') ? 'menu-is-opening menu-open' : '' }}">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-cogs"></i>
               <p>
-                Forms
+                Settings
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ route('employee') }}" class="nav-link {{ request()->is('admin/settings/employee') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
+                  <p>Employes</p>
                 </a>
               </li>
               <li class="nav-item">

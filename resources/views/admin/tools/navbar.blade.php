@@ -5,11 +5,9 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="index3.html" class="nav-link"><i class="fas fa-cash-register"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+
     </ul>
 
     <!-- Right navbar links -->
@@ -121,6 +119,46 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+
+      <li class="nav-item dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <img src="{{ asset('dist/img/avatar.png') }}" class="user-image img-circle elevation-2" alt="User Image">
+          <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <!-- User image -->
+          <li class="user-header ">
+            <img src="{{ asset('dist/img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+
+            <p>
+              <h6 class="text-primary">{{ auth()->user()->name }} </h6>
+                    <hr>
+              <small>Member since {{ auth()->user()->updated_at }}</small>
+
+            </p>
+
+          </li>
+          <!-- Menu Body -->
+
+          <!-- Menu Footer-->
+          <li class="user-footer">
+            <br>
+            <a href="#" class="btn btn-dark ">{{ __('Profile') }}</a>
+            <a class="btn btn-danger float-right" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+             {{  __('Sign out') }}
+         </a>
+
+         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+             @csrf
+         </form>
+
+          </li>
+        </ul>
+      </li>
+
+
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>

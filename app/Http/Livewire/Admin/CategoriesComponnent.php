@@ -17,9 +17,11 @@ class CategoriesComponnent extends Component
     public $active;
     public $update = false;
     public $search = '';
+    public $loading = false;
 
     public $listeners =[
-        'delete_cat'=>'destroy'
+        'delete_cat'=>'destroy',
+         'refresh_categories' =>'$refresh'
     ];
 
 
@@ -41,18 +43,18 @@ class CategoriesComponnent extends Component
     public function render()
     {
         $parent = Categories::whereNull('parent_id')->get();
-        $categories = Categories::with('children')->whereNull('parent_id')->where('name','like','%'.$this->search.'%')->latest()->paginate(4);
+        $categories = Categories::with('children')->whereNull('parent_id')->where('name','like','%'.$this->search.'%')->latest()->paginate(10);
         return view('livewire.admin.categories-componnent',['categories'=>$categories ,'parent'=>$parent])->layout('layouts.admin_app');
     }
 
     public function save(){
+        $this->loading = true;
         $validatedDate = $this->validate([
             'name' => 'required',
         ]);
         Categories::create($validatedDate);
         session()->flash('message', 'Category Created Successfully.');
-       $this->resetInputFields();
-
+        $this->cancel();
     }
 
     public function edit($id){
@@ -64,6 +66,7 @@ class CategoriesComponnent extends Component
 
     public function cancel()
     {
+        $this->loading = false;
         $this->update = false;
         $this->resetInputFields();
     }
@@ -71,7 +74,6 @@ class CategoriesComponnent extends Component
     public function update()
     {
             $this->validate();
-
             try {
               $update_category = Categories::find($this->cat_id);
                 $update_category->update([
@@ -86,11 +88,11 @@ class CategoriesComponnent extends Component
 
     public function destroy($id)
     {
-
         try {
             Categories::find($id)->delete();
             session()->flash('message', 'Category deleted Successfully.');
             $this->cancel();
+
         } catch (\Exception $e) {
             session()->flash('error', $e);
         }

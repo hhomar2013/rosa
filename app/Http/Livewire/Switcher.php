@@ -9,6 +9,8 @@ class Switcher extends Component
     public Model $model;
     public string $field;
     public bool $isPublished;
+    protected $listeners = ['refresh' => '$refresh'];
+
 
     public function mount(){
         $this->isPublished = (bool) $this->model->getAttribute($this->field);
@@ -22,5 +24,6 @@ class Switcher extends Component
     {
         $this->model->setAttribute($this->field, $value)->save();
         session()->flash('message', 'Status Updated Successfully.');
+        $this->emit('refresh');
     }
 }

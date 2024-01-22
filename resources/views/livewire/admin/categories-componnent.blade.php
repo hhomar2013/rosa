@@ -1,13 +1,21 @@
 <div>
+    @include('message')
     <div class="container-fluid">
-            @if (session()->has('message'))
-                {{-- <div class="alert alert-success">
-                {{ session('message') }}
-                </div> --}}
+        <div wire:loading >
+            <div class="spinner-border"  role="status">
+                <span class="sr-only"></span>
+              </div>
+        </div>
+            {{-- @if (session()->has('message'))
                 <script>
                     toastr.success("{{ session('message') }}","{{ config('app.name') }}");
                 </script>
-            @endif
+            @elseif(session()->has('error'))
+                <script>
+                    toastr.error("{{ session('message') }}","{{ config('app.name') }}");
+                </script>
+            @endif --}}
+
             @if ($update)
             @include('livewire.admin.update_category')
             @else
@@ -33,7 +41,7 @@
            </div>
          </div>
          <!-- /.card-header -->
-         <div class="card-body table-responsive p-0" style="height: 200px;">
+         <div class="card-body table-responsive p-0" style="height: 400px;">
            <table class="table table-head-fixed text-nowrap table-hover table-bordered text-center table-sm">
              <thead>
                <tr>
@@ -65,7 +73,7 @@
                    </tr>
                  @empty
                  <tr >
-                     <td colspan="4" class="text-center bg-danger">No Data Found</td>
+                     <td colspan="5" class="text-center  p-3 text-bold text-danger">No Data Found</td>
                  </tr>
                  @endforelse
 
@@ -84,28 +92,6 @@
      </div>
 
  </div>
-<script>
 
 
-    function delete_cat($id){
-        // if(confirm("Are you sure to delete this item ?")){
-        //     window.livewire.emit('delete_cat',$id);
-        // }
 
-            Swal.fire({
-            title: 'Are you sure?',
-            // text: "Are you sure to delete this item ?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                window.livewire.emit('delete_cat',$id);
-            }
-            })
-    }
-
-
-</script>
