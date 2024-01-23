@@ -36,7 +36,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     //HomePage
     Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
-    Route::get('/categories',[AdminController::class,'category'])->name('categories');
+    Route::get('/settings/categories',[AdminController::class,'category'])->name('categories');
     Route::get('/settings/employee',[AdminController::class,'employee'])->name('employee');
     // Route::POST('/logout-admin',[LoginController::class,'admin_logout'])->name('admin.logout');
 })->name('admin.');

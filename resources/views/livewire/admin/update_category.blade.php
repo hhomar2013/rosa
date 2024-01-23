@@ -1,9 +1,8 @@
-<div>
-    <div class="col-md-6">
+<div class="col-md-4">
         <!-- general form elements -->
         <div class="card card-success">
         <div class="card-header">
-            <h3 class="card-title">Categories Form - Update</h3>
+            <h3 class="card-title">Modify Categories</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -34,5 +33,4 @@
         </form>
         </div>
         <!-- /.card -->
-</div>
 </div>

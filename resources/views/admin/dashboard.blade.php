@@ -1,7 +1,7 @@
 @extends('layouts.admin_app')
 @section('title','Dashboard')
-@section('content-header',)
-@include('admin.tools.content_header',['title'=>'Dashboard','page'=>'Roze craft Dashboard'])
+@section('content-header')
+@include('admin.tools.content_header',['title'=>'Dashboard','page'=> 'Dashboard'])
 @endsection
 @section('loader')
          <!-- Preloader -->
