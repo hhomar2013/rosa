@@ -855,7 +855,7 @@ S2.define('select2/results',[
 
   Results.prototype.render = function () {
     var $results = $(
-      '<ul class="select2-results__options" role="listbox"></ul>'
+      '<ul class="select2-results__options" roles="listbox"></ul>'
     );
 
     if (this.options.get('multiple')) {
@@ -878,7 +878,7 @@ S2.define('select2/results',[
     this.hideLoading();
 
     var $message = $(
-      '<li role="alert" aria-live="assertive"' +
+      '<li roles="alert" aria-live="assertive"' +
       ' class="select2-results__option"></li>'
     );
 
@@ -1417,7 +1417,7 @@ S2.define('select2/selection/base',[
 
   BaseSelection.prototype.render = function () {
     var $selection = $(
-      '<span class="select2-selection" role="combobox" ' +
+      '<span class="select2-selection" roles="combobox" ' +
       ' aria-haspopup="true" aria-expanded="false">' +
       '</span>'
     );
@@ -1599,8 +1599,8 @@ S2.define('select2/selection/single',[
 
     $selection.html(
       '<span class="select2-selection__rendered"></span>' +
-      '<span class="select2-selection__arrow" role="presentation">' +
-        '<b role="presentation"></b>' +
+      '<span class="select2-selection__arrow" roles="presentation">' +
+        '<b roles="presentation"></b>' +
       '</span>'
     );
 
@@ -1760,7 +1760,7 @@ S2.define('select2/selection/multiple',[
   MultipleSelection.prototype.selectionContainer = function () {
     var $container = $(
       '<li class="select2-selection__choice">' +
-        '<span class="select2-selection__choice__remove" role="presentation">' +
+        '<span class="select2-selection__choice__remove" roles="presentation">' +
           '&times;' +
         '</span>' +
       '</li>'
@@ -1983,7 +1983,7 @@ S2.define('select2/selection/search',[
       '<li class="select2-search select2-search--inline">' +
         '<input class="select2-search__field" type="search" tabindex="-1"' +
         ' autocomplete="off" autocorrect="off" autocapitalize="none"' +
-        ' spellcheck="false" role="searchbox" aria-autocomplete="list" />' +
+        ' spellcheck="false" roles="searchbox" aria-autocomplete="list" />' +
       '</li>'
     );
 
@@ -4083,7 +4083,7 @@ S2.define('select2/dropdown/search',[
       '<span class="select2-search select2-search--dropdown">' +
         '<input class="select2-search__field" type="search" tabindex="-1"' +
         ' autocomplete="off" autocorrect="off" autocapitalize="none"' +
-        ' spellcheck="false" role="searchbox" aria-autocomplete="list" />' +
+        ' spellcheck="false" roles="searchbox" aria-autocomplete="list" />' +
       '</span>'
     );
 
@@ -4309,7 +4309,7 @@ S2.define('select2/dropdown/infiniteScroll',[
     var $option = $(
       '<li ' +
       'class="select2-results__option select2-results__option--load-more"' +
-      'role="option" aria-disabled="true"></li>'
+      'roles="option" aria-disabled="true"></li>'
     );
 
     var message = this.options.get('translations').get('loadingMore');

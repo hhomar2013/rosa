@@ -43,7 +43,7 @@
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     @livewireStyles
 </head>
-<body class="hold-transition sidebar-mini layout-fixed text-sm">
+<body class="hold-transition sidebar-mini layout-fixed text-sm  {{ request()->is('pos') ? 'sidebar-collapse' : '' }}">
     @yield('loader')
     <div class="wrapper">
 

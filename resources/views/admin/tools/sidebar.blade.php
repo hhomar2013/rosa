@@ -38,7 +38,7 @@
 
             <li class="nav-item">
                 <a href="" class="nav-link">
-                     <i class="fas fa-calendar-alt"></i>
+                     <i class="fas fa-calendar-alt nav-icon"></i>
                     <p>
                          Attendance
                         <span class="right badge badge-danger">New</span>
@@ -51,6 +51,43 @@
               <i class="nav-icon fas fa-cogs"></i>
               <p>
                 Settings
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('categories') }}" class="nav-link {{ request()->is('admin/settings/categories') ? 'active' : '' }}">
+                        <i class="fas fa-sitemap nav-icon"></i>
+                        <p>Categories</p>
+                    </a>
+                </li>
+              <li class="nav-item">
+                <a href="{{ route('employee') }}" class="nav-link {{ request()->is('admin/settings/employee') ? 'active' : '' }}">
+                  <i class="fas fa-user-tie nav-icon"></i>
+                  <p>Employes</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('bank')}}" class="nav-link {{ request()->is('admin/settings/bank') ? 'active' : '' }}">
+                    <i class="fas fa-money-check-alt nav-icon"></i>
+                  <p>Bank</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/validation.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Validation</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item  {{ request()->is('admin/reports/*') ? 'menu-is-opening menu-open' : '' }}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-archive"></i>
+              <p>
+                Reports
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -82,7 +119,6 @@
               </li>
             </ul>
           </li>
-
 
         </ul>
       </nav>

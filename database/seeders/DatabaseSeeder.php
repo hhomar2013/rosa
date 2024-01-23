@@ -21,16 +21,22 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Admin::create([
-            'name'=> 'OmarMahgoub-Admin',
-            'email'=>'admin@app.com',
-            'password'=>bcrypt('123456')
-        ]);
+//        Admin::create([
+//            'name'=> 'OmarMahgoub-Admin',
+//            'email'=>'admin@app.com',
+//            'password'=>bcrypt('123456')
+//        ]);
+//
+//        User::create([
+//            'name'=> 'OmarMahgoub-Admin',
+//            'email'=>'admin@app.com',
+//            'password'=>bcrypt('123456')
+//        ]);
+        $this->call(PermissionTableSeeder::class);
+        $this->call(CreateAdminUserSeeder::class);
 
-        User::create([
-            'name'=> 'OmarMahgoub-Admin',
-            'email'=>'admin@app.com',
-            'password'=>bcrypt('123456')
-        ]);
+
+
+
     }
 }

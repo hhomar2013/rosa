@@ -5,7 +5,7 @@
 
 ( function( factory ) {
 	"use strict";
-	
+
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
@@ -4454,7 +4454,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 		// Clean up headers
 		this.headers
-			.removeAttr( "role aria-expanded aria-selected aria-controls tabIndex" )
+			.removeAttr( "roles aria-expanded aria-selected aria-controls tabIndex" )
 			.removeUniqueId();
 
 		this._destroyIcons();
@@ -4462,7 +4462,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		// Clean up content panels
 		contents = this.headers.next()
 			.css( "display", "" )
-			.removeAttr( "role aria-hidden aria-labelledby" )
+			.removeAttr( "roles aria-hidden aria-labelledby" )
 			.removeUniqueId();
 
 		if ( this.options.heightStyle !== "content" ) {
@@ -5145,16 +5145,16 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 	_destroy: function() {
 		var items = this.element.find( ".ui-menu-item" )
-				.removeAttr( "role aria-disabled" ),
+				.removeAttr( "roles aria-disabled" ),
 			submenus = items.children( ".ui-menu-item-wrapper" )
 				.removeUniqueId()
-				.removeAttr( "tabIndex role aria-haspopup" );
+				.removeAttr( "tabIndex roles aria-haspopup" );
 
 		// Destroy (sub)menus
 		this.element
 			.removeAttr( "aria-activedescendant" )
 			.find( ".ui-menu" ).addBack()
-				.removeAttr( "role aria-labelledby aria-expanded aria-hidden aria-disabled " +
+				.removeAttr( "roles aria-labelledby aria-expanded aria-hidden aria-disabled " +
 					"tabIndex" )
 				.removeUniqueId()
 				.show();
@@ -5356,7 +5356,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 		focused = this.active.children( ".ui-menu-item-wrapper" );
 		this._addClass( focused, null, "ui-state-active" );
 
-		// Only update aria-activedescendant if there's a role
+		// Only update aria-activedescendant if there's a roles
 		// otherwise we assume focus is managed elsewhere
 		if ( this.options.role ) {
 			this.element.attr( "aria-activedescendant", focused.attr( "id" ) );
@@ -13672,7 +13672,7 @@ var widgetsProgressbar = $.widget( "ui.progressbar", {
 	},
 
 	_destroy: function() {
-		this.element.removeAttr( "role aria-valuemin aria-valuemax aria-valuenow" );
+		this.element.removeAttr( "roles aria-valuemin aria-valuemax aria-valuenow" );
 
 		this.valueDiv.remove();
 	},
@@ -15711,7 +15711,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			parent: this.currentItem.parent()[ 0 ]
 		};
 
-		// If the helper is not the original, hide the original so it's not playing any role during
+		// If the helper is not the original, hide the original so it's not playing any roles during
 		// the drag, won't cause anything bad this way
 		if ( this.helper[ 0 ] !== this.currentItem[ 0 ] ) {
 			this.currentItem.hide();
@@ -17561,7 +17561,7 @@ $.widget( "ui.spinner", {
 	_destroy: function() {
 		this.element
 			.prop( "disabled", false )
-			.removeAttr( "autocomplete role aria-valuemin aria-valuemax aria-valuenow" );
+			.removeAttr( "autocomplete roles aria-valuemin aria-valuemax aria-valuenow" );
 
 		this.uiSpinner.replaceWith( this.element );
 	},
@@ -18366,14 +18366,14 @@ $.widget( "ui.tabs", {
 			.off( this.eventNamespace );
 
 		this.anchors
-			.removeAttr( "role tabIndex" )
+			.removeAttr( "roles tabIndex" )
 			.removeUniqueId();
 
 		this.tabs.add( this.panels ).each( function() {
 			if ( $.data( this, "ui-tabs-destroy" ) ) {
 				$( this ).remove();
 			} else {
-				$( this ).removeAttr( "role tabIndex " +
+				$( this ).removeAttr( "roles tabIndex " +
 					"aria-live aria-busy aria-selected aria-labelledby aria-hidden aria-expanded" );
 			}
 		} );

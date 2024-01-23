@@ -39,8 +39,8 @@ var DataTable = $.fn.dataTable;
 var _display = DataTable.Responsive.display;
 var _original = _display.modal;
 var _modal = $(
-	'<div class="modal fade dtr-bs-modal" role="dialog">'+
-		'<div class="modal-dialog" role="document">'+
+	'<div class="modal fade dtr-bs-modal" roles="dialog">'+
+		'<div class="modal-dialog" roles="document">'+
 			'<div class="modal-content">'+
 				'<div class="modal-header">'+
 					'<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
@@ -61,7 +61,7 @@ _display.modal = function ( options ) {
 				if ( options && options.header ) {
 					var header = _modal.find('div.modal-header');
 					var button = header.find('button').detach();
-					
+
 					header
 						.empty()
 						.append( '<h4 class="modal-title">'+options.header( row )+'</h4>' )
