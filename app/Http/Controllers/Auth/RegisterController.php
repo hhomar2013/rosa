@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Str;
+// use Intervention\Image\Facades\Image;
+
 
 class RegisterController extends Controller
 {
@@ -81,12 +84,31 @@ class RegisterController extends Controller
 
     protected function createAdmin(Request $request)
     {
+
+
+          /** Make avata */
+
+          $path = 'users/images/';
+          $fontPath = public_path('fonts/Designer.otf');
+          $char = strtoupper($request->name[0]);
+          $newAvatarName = rand(12,34353).time().'_avatar.png';
+          $dest = $path.$newAvatarName;
+
+          $createAvatar = makeAvatar($fontPath,$dest,$char);
+          $picture = $createAvatar == true ? $newAvatarName : '';
+
         $this->validator($request->all())->validate();
         $admin = Admin::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'roles_name' => "['Admin']",
+            'avatar'=> $picture,
         ]);
+
+
         return redirect()->intended('admin');
+
+
     }
 }

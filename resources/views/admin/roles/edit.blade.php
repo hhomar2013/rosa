@@ -31,6 +31,7 @@
             <div class="form-group">
                 <strong>Name:</strong>
                 {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                {!! Form::hidden('guard_name', null, array('placeholder' => 'Name','class' => 'form-control','value' =>$role->guard_name)) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

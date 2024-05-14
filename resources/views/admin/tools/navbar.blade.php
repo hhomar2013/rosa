@@ -133,7 +133,7 @@
             <p>
               <h6 class="text-primary">{{ auth()->user()->name }} </h6>
                     <hr>
-              <small>Member since {{ auth()->user()->updated_at }}</small>
+              <small>{{ __('Member since') }} {{ auth()->user()->updated_at }}</small>
 
             </p>
 
@@ -147,7 +147,7 @@
             <a class="btn btn-danger float-right" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
-             {{  __('Sign out') }}
+             {{  __('Logout') }}
          </a>
 
          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,7 @@ class RoleController extends Controller
      */
     function __construct()
     {
+        app()['cache']->forget('spatie.permission.cache');
 //        $this->middleware('permission:roles-list|roles-create|roles-edit|roles-delete', ['only' => ['index','store']]);
 //        $this->middleware('permission:roles-create', ['only' => ['create','store']]);
 //        $this->middleware('permission:roles-edit', ['only' => ['edit','update']]);
@@ -30,8 +32,11 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+        $user = auth()->guard('admin')->user();
+
+        dd($user->hasPermissionTo('settings', 'admin'));
         $roles = Role::query()->orderBy('id','DESC')->paginate(5);
-        return view('roles.index',compact('roles'))
+        return view('admin.roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -43,7 +48,7 @@ class RoleController extends Controller
     public function create()
     {
         $permission = Permission::get();
-        return view('roles.create',compact('permission'));
+        return view('admin.roles.create',compact('permission'));
     }
 
     /**
@@ -59,10 +64,10 @@ class RoleController extends Controller
             'permission' => 'required',
         ]);
 
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+        $role = Role::create(['guard_name'=>'admin','name' => $request->input('name')]);
+        $role->syncPermissions([$request->input('permission')]);
 
-        return redirect()->route('roles.index')
+        return redirect()->route('admin.roles.index')
             ->with('success','Role created successfully');
     }
     /**
@@ -78,7 +83,7 @@ class RoleController extends Controller
             ->where("role_has_permissions.role_id",$id)
             ->get();
 
-        return view('roles.show',compact('role','rolePermissions'));
+        return view('admin.roles.show',compact('role','rolePermissions'));
     }
 
     /**
@@ -95,7 +100,7 @@ class RoleController extends Controller
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
 
-        return view('roles.edit',compact('role','permission','rolePermissions'));
+        return view('admin.roles.edit',compact('role','permission','rolePermissions'));
     }
 
     /**
@@ -112,13 +117,16 @@ class RoleController extends Controller
             'permission' => 'required',
         ]);
 
+
+
         $role = Role::find($id);
         $role->name = $request->input('name');
+        $role->guard_name = $request->input('guard_name');
         $role->save();
+        $permissions = $request->input('permission');
+        $role->syncPermissions($permissions);
 
-        $role->syncPermissions($request->input('permission'));
-
-        return redirect()->route('roles.index')
+        return redirect()->route('admin.roles.index')
             ->with('success','Role updated successfully');
     }
     /**

@@ -10,7 +10,7 @@
         <div class="col-lg-12 margin-tb">
 
             <div class="pull-right">
-                @can('role-create')
+                @can('dashboard')
                     <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
                 @endcan
             </div>
@@ -37,7 +37,7 @@
                 <td>{{ $role->name }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-                    @can('role-edit')
+                    @can('dashboard')
                         <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
                     @endcan
                     @can('role-delete')
@@ -53,8 +53,6 @@
 
     {!! $roles->render() !!}
 
-
-    <p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 @endsection
 @endsection
 @push('js')

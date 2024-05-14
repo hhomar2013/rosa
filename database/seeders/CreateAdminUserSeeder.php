@@ -18,14 +18,24 @@ class CreateAdminUserSeeder extends Seeder
         $user = Admin::create([
             'name' => 'OmarMahgoub',
             'email' => 'admin@app.com',
+            'roles_name' => "['Admin']",
             'password' => bcrypt('123456')
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
 
-        $permissions = Permission::pluck('id','id')->all();
+        // Create a manager role for users authenticating with the admin guard:
+        $role = Role::create(['guard_name'=> 'admin','name' => 'Admin']);
 
-        $role->syncPermissions($permissions);
+// Define a `publish articles` permission for the admin users belonging to the admin guard
+//        $permission = Permission::create(['guard_name' => 'admin', 'name' => 'dashboard']);
+
+
+
+//        $role = Role::create(['name' => 'Admin']);
+
+        $permission = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permission);
 
         $user->assignRole([$role->id]);
     }

@@ -13,6 +13,8 @@ class AdminController extends Controller
     }
     public function index()
     {
+//        $user = auth()->guard('admin')->user();
+//        dd($user);
         return view('admin.dashboard');
     }
     public function category()

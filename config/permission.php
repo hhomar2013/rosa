@@ -24,8 +24,10 @@ return [
          * `Spatie\Permission\Contracts\Role` contract.
          */
 
-        'roles' => Spatie\Permission\Models\Role::class,
-
+        'role' => Spatie\Permission\Models\Role::class,
+//        'role' => [
+//            'default' => Spatie\Permission\Models\Role::class,
+//        ],
     ],
 
     'table_names' => [
@@ -138,7 +140,7 @@ return [
     'display_permission_in_exception' => false,
 
     /*
-     * When set to true, the required roles names are added to exception messages.
+     * When set to true, the required role names are added to exception messages.
      * This could be considered an information leak in some contexts, so the default
      * setting is false here for optimum safety.
      */
@@ -177,7 +179,7 @@ return [
 
         /*
          * You may optionally indicate a specific cache driver to use for permission and
-         * roles caching using any of the `store` drivers listed in the cache.php config
+         * role caching using any of the `store` drivers listed in the cache.php config
          * file. Using 'default' here means to use the `default` set in cache.php.
          */
 
