@@ -14,18 +14,18 @@
                 <input wire:model.defer="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="cteogry Name">
                 @error('name') <span class="text-danger">{{ $message }}</span>@enderror
             </div>
-           {{-- <div class="form-group">
-                <label>Minimal</label>
-                <select class="form-control select2" style="width: 100%;">
-                  <option selected="selected">Alabama</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option ion>Washington</option>
-                </select>
-              </div> --}}
+            @if($parent->Count() >0)
+                <div class="form-group">
+                    <label>Main Category</label>
+                    <select class="form-control" style="width: 100%;" wire:model="parent_id">
+                    <option selected="selected" value="{{ null }}">Main Category</option>
+                        @foreach ($parent as $val_parent )
+                        <option value="{{ $val_parent->id }}">{{ $val_parent->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+
 
             </div>
             <!-- /.card-body -->

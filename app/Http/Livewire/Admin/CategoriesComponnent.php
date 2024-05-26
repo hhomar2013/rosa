@@ -13,7 +13,7 @@ class CategoriesComponnent extends Component
     use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
     public $name ,$cat_id;
-    // public $parent_id = 0;
+    public $parent_id = null;
     public $active;
     public $update = false;
     public $search = '';
@@ -52,7 +52,10 @@ class CategoriesComponnent extends Component
         $validatedDate = $this->validate([
             'name' => 'required',
         ]);
-        Categories::create($validatedDate);
+        Categories::create([
+            'name'=> $this->name,
+            'parent_id'=>$this->parent_id,
+        ]);
         session()->flash('message', 'Category Created Successfully.');
         $this->cancel();
     }
@@ -61,6 +64,7 @@ class CategoriesComponnent extends Component
         $category = Categories::findOrFail($id);
         $this->name = $category->name;
         $this->cat_id = $category->id;
+        $this->parent_id = $category->parent_id;
         $this->update = true;
     }
 
@@ -73,12 +77,22 @@ class CategoriesComponnent extends Component
 
     public function update()
     {
+
             $this->validate();
             try {
+
               $update_category = Categories::find($this->cat_id);
-                $update_category->update([
-                    'name'=>$this->name
-                ]);
+                if ($this->parent_id != "null"){
+                    $update_category->update([
+                        'name'=>$this->name,
+                        'parent_id'=> $this->parent_id,
+                    ]);
+                }else{
+                    $update_category->update([
+                        'name'=>$this->name,
+                        'parent_id'=> null,
+                    ]);
+                }
                 session()->flash('message', 'Category Updated Successfully.');
                 $this->cancel();
             } catch (\Exception $e) {

@@ -4,6 +4,9 @@
  /**
   * MAKE AVATAR FUNCTION
   */
+
+use App\Models\posRegister;
+
   if(!function_exists('makeAvatar')){
 
        function makeAvatar($fontPath, $dest, $char){
@@ -20,6 +23,17 @@
            return $path;
        }
   }
+
+
+function get_pose_regester(){
+    $user = auth()->id();
+    $pos_register = posRegister::query()->where('user_id',$user)->where('statues',0)->get();
+    $posId = 0;
+    foreach ($pos_register as $value) {
+        $posId = $value->id;
+    }
+    return $posId;
+}
 
 
 

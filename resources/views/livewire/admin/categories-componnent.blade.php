@@ -55,7 +55,7 @@
                                         <td>{{ $val->name }}</td>
                                         <td>
                                             @foreach ($val->children  as $child )
-                                                <a class="btn bg-primary  btn-sm text-center" ondblclick="delete_cat({{ $child->id }})" wire:click="edit({{ $child->id }})" >{{ $child->name }}</a>
+                                                <a class="btn bg-dark  btn-sm text-center" ondblclick="delete_cat({{ $child->id }})" wire:click="edit({{ $child->id }})">{{ $child->name }} @livewire('switcher', ['model' => $child, 'field' => 'status'], key($child->id))</a>
                                             @endforeach
                                         </td>
                                         <td>

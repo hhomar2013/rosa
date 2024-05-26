@@ -4,7 +4,7 @@
     @include('admin.tools.content_header',['title'=>'POS','page'=>'POS'])
 @endsection
 @section('content')
-    @livewire('admin.employee.employee-component')
+    @livewire('admin.pos.pos-component')
 @endsection
 @push('js')
 

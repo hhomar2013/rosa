@@ -29,4 +29,8 @@ class AdminController extends Controller
         return view('admin.bank.index');
     }
 
+    public function pos(){
+        return view('admin.pos.index');
+    }
+
 }

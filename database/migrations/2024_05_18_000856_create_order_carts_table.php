@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pos_registers', function (Blueprint $table) {
+        Schema::create('order_carts', function (Blueprint $table) {
             $table->id();
-            $table->double("startMoney",10,2)->default(0);
-            $table->double("endMoney",10,2)->default(0);
-            $table->foreignId('user_id')->constrained('admins')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('statues')->default(0);
-            $table->softDeletes();
+            $table->foreignId('order_id')->constrained('orders')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('p_name')->nullable();
+            $table->string('qty')->nullable();
+            $table->double('total',10,2)->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pos_registers');
+        Schema::dropIfExists('order_carts');
     }
 };

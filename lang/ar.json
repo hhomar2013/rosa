@@ -372,7 +372,9 @@
     "The remaining weight" : "المتبقى من الوزن",
     "The box is ready to send" :"👌 الصندوق جاهز للإرسال",
     "Can not close the box before all operations are completed":"لا يمكن إغلاق الصندوق قبل إتمام كافة العمليات",
-    "Member since":"عضو منذ"
+    "Member since":"عضو منذ",
+    "Pos Register" :"تسجيل فتره جديدة",
+    "Pound" :"جنيه"
 
 }
 

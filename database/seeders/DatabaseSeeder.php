@@ -75,6 +75,7 @@ class DatabaseSeeder extends Seeder
         $user->assignRole($role3);
 
 
+
     }
 
     }

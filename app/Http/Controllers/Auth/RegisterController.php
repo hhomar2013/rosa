@@ -85,25 +85,25 @@ class RegisterController extends Controller
     protected function createAdmin(Request $request)
     {
 
-
           /** Make avata */
 
-          $path = 'users/images/';
-          $fontPath = public_path('fonts/Designer.otf');
-          $char = strtoupper($request->name[0]);
-          $newAvatarName = rand(12,34353).time().'_avatar.png';
-          $dest = $path.$newAvatarName;
+        //   $path = 'users/images/';
+        //   $fontPath = public_path('fonts/Designer.otf');
+        //   $char = strtoupper($request->name[0]);
+        //   $newAvatarName = rand(12,34353).time().'_avatar.png';
+        //   $dest = $path.$newAvatarName;
 
-          $createAvatar = makeAvatar($fontPath,$dest,$char);
-          $picture = $createAvatar == true ? $newAvatarName : '';
+        //   $createAvatar = makeAvatar($fontPath,$dest,$char);
+        //   $picture = $createAvatar == true ? $newAvatarName : '';
 
-        $this->validator($request->all())->validate();
+        $this->validator($request->all()
+        )->validate();
         $admin = Admin::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'roles_name' => "['Admin']",
-            'avatar'=> $picture,
+            // 'avatar'=> $picture,
         ]);
 
 

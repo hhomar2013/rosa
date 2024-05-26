@@ -48,6 +48,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::resource('/settings/roles', RoleController::class);
     Route::resource('/settings/users', UserController::class);
 
+    //pos
+    Route::get('/pos',[AdminController::class,'pos'])->name('pos');
+
     // Route::POST('/logout-admin',[LoginController::class,'admin_logout'])->name('admin.logout');
 })->name('admin.');
 

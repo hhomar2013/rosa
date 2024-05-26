@@ -16,13 +16,14 @@
         // }
 
             Swal.fire({
-            title: 'Are you sure?',
+            title: '{{ __('Are you sure?') }}',
             // text: "Are you sure to delete this item ?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: '{{ __("Yes, delete it!") }}',
+            cancelButtonText:'{{ __("Cancel") }}'
             }).then((result) => {
             if (result.isConfirmed) {
                 window.livewire.emit('delete_cat',$id);
